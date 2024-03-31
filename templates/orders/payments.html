@@ -1,0 +1,261 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="images/fevicon.png" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Payment</title>
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{%static 'styles/bootstrap.css'%}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- font awesome style -->
+  <link href="{%static 'styles/font-awesome.min.css'%}" rel="stylesheet" />
+  <link href="{%static 'fonts/fontawesome/css/all.min.css'%}" rel="stylesheet"/>
+  <link href="{%static 'css/ui.css'%}" rel="stylesheet" type="text/css"/>
+  <link href="{%static 'css/responsive.css'%}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+  <!-- Custom styles for this template -->
+  <link href="{%static 'styles/style.css'%}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{%static 'styles/responsive.css'%}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <!-- header section strats -->
+  {% include "partials/navbar.html" %}
+  <!-- end header section -->
+  <div class="container">
+
+	
+	<h4 class="mt-3 text-center mb-3 btn btn-primary btn-lg btn-block">Review Order and Make Payment</h4>
+	<div class="row mt-4">
+		<aside class="col-lg-8">
+	<div class="card">
+        <div class="card mb-2">
+            <h5 class="card-header">Billing Address</h5>
+            <div class="card-body">
+              <p class="card-text mb-0">{{order.full_name}}</p>
+              <p class="card-text mb-0">{{order.full_address}}</p>
+              <p class="card-text mb-0">{{order.city}}, {{order.state}}</p>
+              <p class="card-text mb-0">{{order.country}}</p>
+              <p class="card-text mb-0">{{order.email}}</p>
+              <p class="card-text mb-0">{{order.phone}}</p>
+			  {%if order.order_note%}
+              	<b>Order Note : {{order.order_note}}</b>
+				
+			  {%endif%}
+
+            </div>
+          </div>
+          <div class="card mb-2">
+            <h5 class="card-header">Payment Method</h5>
+            <div class="card-body">
+              <p class="card-text">Paypal</p>
+              
+            </div>
+          </div>
+          <div class="card mb-5">
+            <h5 class="card-header">Review Products</h5>
+            <div class="card-body">
+				<table class="table table-borderless">
+					<thead class="text-muted">
+						<tr class="small text-uppercase">
+							<th scope="col">Product</th>
+							<th scope="col" width="120">Quantity</th>
+							<th scope="col" width="120">Price</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+					{% for cart_item in cart_items  %}
+					<tr>
+
+						<td>
+							<figure class="itemside align-items-center">
+								<div class="aside"><img src="{{cart_item.product.images_product.url}}" class="img-sm"></div>
+								<figcaption class="info">
+									<a href="{{cart_item.product.get_url}}" class="title text-dark">{{cart_item.product.product_name}}</a>
+									<p class="text-muted small">
+										Specification : {{cart_item.spec.spec_name}}GB
+									</p>
+								</figcaption>
+							</figure>
+						</td>
+						
+						<td> 
+							<!-- col.// -->
+							<label for="">{{cart_item.quantity}}</label>
+						</td>
+
+						<td> 
+							<div class="price-wrap"> 
+								<var class="price">${{cart_item.sub_total}}</var> 
+								
+							</div> <!-- price-wrap .// -->
+						
+						</td>
+
+					
+					</tr>
+					{% endfor %}
+					</tbody>
+					</table>
+              
+            </div>
+          </div>
+	</div> <!-- card.// -->
+
+		</aside> <!-- col.// -->
+		<aside class="col-lg-4">
+
+			<div class="card">
+			<div class="card-body">
+				<dl class="dlist-align">
+				<dt>Total price:</dt>
+				<dd class="text-right">${{total}}</dd>
+				</dl>
+				<dl class="dlist-align">
+				<dt>Tax: </dt>
+				<dd class="text-right">${{tax}}</dd>
+				</dl>
+				<dl class="dlist-align">
+				<dt>Total:</dt>
+				<dd class="text-right text-dark b"><strong>${{order.order_total}}</strong></dd>
+				</dl>
+				<hr>
+				<p class="text-center mb-3">
+					<img src="{%static 'img/payments.png'%}" height="26">
+				</p>
+				<div id="paypal-button-container">
+					<!-- paypal button -->
+				</div>
+				
+				
+			</div> <!-- card-body.// -->
+			</div> <!-- card.// -->
+
+	</aside> <!-- col.// -->
+
+
+	</div> <!-- row.// -->
+</div>
+  <!-- slider section -->
+
+ 
+  
+ 
+  <!-- jQery -->
+  <script src="{%static 'script/jquery-3.4.1.min.js'%}"></script>
+  <!-- bootstrap js -->
+  <script src="{%static 'script/bootstrap.js'%}"></script>
+  <!-- custom js -->
+  <script src="{%static 'script/custom.js'%}"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+  <!-- End Google Map -->
+  <script src="{%static 'js/jquery-2.0.0.min.js'%}"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=Ac6cjuJtmgX-3Xn5-mDT43szDebuNlpe6KFzGBJ5L6h14AjriMh7czozDEdA9L9WmAR1fHWW1EvtXDd1&currency=USD"></script>
+  
+</body>
+<script>
+
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+    var orderID = "{{order.order_number}}"
+    var payment_method = 'Paypal'
+    var url = "{%url 'payments' %}";
+    var redirect_url = "{%url 'order_completed'%}"
+
+    window.paypal
+    .Buttons({
+  
+      style: {
+        color:  'blue',
+        shape:  'rect',
+        label:  'pay',
+        height: 40
+    },
+  
+    createOrder: function(data,actions){
+      return actions.order.create({
+        purchase_units : [{
+          amount : {
+            value : '{{order.order_total}}'
+          }
+        }]
+      })
+    },
+  
+    onApprove: function(data, actions){
+      return actions.order.capture().then(function(details){
+        console.log(details)
+        storage = {
+          'orderID' : orderID,
+          'transID' : details.id,
+          'payment_method' : payment_method,
+          'status' : details.status
+        }
+        sendData();
+        function sendData(){
+          fetch(url,{
+            method : "POST",
+            headers: {
+              'Content-type' : 'application/json',
+              "X-CSRFToken" : csrftoken,
+
+            },
+            body : JSON.stringify(storage),
+          } ).then(response => response.json())
+          .then(data => {
+            window.location.href = redirect_url + "?order_number="+data.order_number+"&payment_id="+data.transID;
+          });
+          
+        }
+      })
+    }
+    }
+      ).render("#paypal-button-container");
+    
+  // Example function to show a result to the user. Your site's UI library can be used instead.
+  function resultMessage(message) {
+    const container = document.querySelector("#result-message");
+    container.innerHTML = message;
+  }
+  
+  </script>
+
+
+</html>
+

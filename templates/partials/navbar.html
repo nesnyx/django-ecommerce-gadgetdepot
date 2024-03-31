@@ -1,0 +1,77 @@
+{% load static %}
+
+<header class="header_section">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg custom_nav-container ">
+      <a class="navbar-brand" href="{%url 'home_page'%}">
+        <img src="{%static 'img/logo-3.png'%}" alt="Bootstrap" width="120" height="40">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class=""> </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          {% if user.id is None  %}
+
+          {%else%}
+          <form action="{%url 'search'%}" class="search" method='GET'>
+            <div class="input-group w-100">
+                <input type="text" class="form-control" style="width:80%;" placeholder="Search" name='keyword'>
+                
+                <div class="input-group-append">
+                  <button class="btn btn-outline-danger" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+          </form>
+          {%endif%}
+        </ul>
+        <ul class="navbar-nav  ml-auto">
+          {% if user.id is None  %}
+         
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login_page' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register_page' %}">Register</a>
+          </li>
+          
+          {% else %}
+          <li class="nav-item">
+            <span class="nav-link btn btn-success text-white mt-2"> Welcome, {{user.first_name}}</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'store_page'%}">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'dashboard_page'%}">Dashboard</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'logout' %}">Logout</a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a href="{%url 'cart_page'%}" class="widget-header pl-3 ml-3">
+              <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
+
+              <span class="badge badge-pill badge-danger notify">
+                {{count_cart}}
+              </span>
+            </a>
+          </li>
+          
+          {% endif %}
+
+          
+          
+          
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>

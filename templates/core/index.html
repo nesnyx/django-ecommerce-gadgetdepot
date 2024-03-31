@@ -1,0 +1,113 @@
+{% extends "partials/base.html" %}
+{%load static%}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<section class="slider_section">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="container ">
+            <div class="row">
+              <div class="col-md-6 col-lg-5">
+                <div class="detail-box">
+                  <h1 style="font-size: 5rem;">
+                    Want to buy
+                    <strong>Handphone？</strong>
+                  </h1>
+                  <h3>
+                    <strong>Have you checked out our store yet? </strong> <br></h3>
+                  <div class="btn-box">
+                    <a href="{%url 'store_page'%}" class="btn-1">
+                      Check More
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-7">
+                <div class="img-box">
+                  <img src="{%static 'img/hand.png' %}" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+ 
+
+  <section class="about_section layout_padding">
+    <div class="container  ">
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <div class="img-box">
+            <img src="{%static 'img/mobile-payment.png'%}" style="max-width: 250px;" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                About us
+              </h2>
+            </div>
+            <p>
+              At Gadget Depot, we offer the best selection and service for all your smartphone needs.</p>
+            <a href="{%url 'store_page'%}">
+              Check our Products!
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+ 
+
+
+  <section class="info_section ">
+    <div class="info_container ">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="info_contact ">
+              <div class="row">
+                <div class="col-md-4">
+                  <a href="#" class="link-box">
+                
+                    <span>
+                      Call +621234567890
+                    </span>
+                  </a>
+                  <a href="#" class="link-box">
+                    <span>
+                      nyxnes97@gmail.com
+                    </span>
+                  </a>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="info_logo">
+          <a class="navbar-brand" href="{%url 'home_page'%}">
+            <span>
+              Gadget Depot
+            </span> <br>
+          </a>
+        </div>
+        <h5 class="btn btn-sm btn-secondary" style="color: white;">Develop by Aris Setiawan Bara</h5>
+        
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+
+
+
+

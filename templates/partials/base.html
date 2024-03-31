@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="images/fevicon.png" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>{% block title %}
+  
+  {% endblock title %}</title>
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{%static 'styles/bootstrap.css'%}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- font awesome style -->
+  <link href="{%static 'styles/font-awesome.min.css'%}" rel="stylesheet" />
+  <link href="{%static 'fonts/fontawesome/css/all.min.css'%}" rel="stylesheet"/>
+  <link href="{%static 'css/ui.css'%}" rel="stylesheet" type="text/css"/>
+  <link href="{%static 'css/responsive.css'%}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+  <!-- Custom styles for this template -->
+  <link href="{%static 'styles/style.css'%}" rel="stylesheet" />
+  <link href="{%static 'css/custom.css'%}" rel="stylesheet" type="text/css"/>
+  <!-- responsive style -->
+  <link href="{%static 'styles/responsive.css'%}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <!-- header section strats -->
+  {% include "partials/navbar.html" %}
+  <!-- end header section -->
+  
+  <!-- slider section -->
+  {% block content %}
+  
+  {% endblock content %}
+ 
+  
+ 
+  <!-- jQery -->
+  <script src="{%static 'script/jquery-3.4.1.min.js'%}"></script>
+  <!-- bootstrap js -->
+  <script src="{%static 'script/bootstrap.js'%}"></script>
+  <!-- custom js -->
+  <script src="{%static 'script/custom.js'%}"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+  <!-- End Google Map -->
+  <script src="{%static 'js/jquery-2.0.0.min.js'%}"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=Ac6cjuJtmgX-3Xn5-mDT43szDebuNlpe6KFzGBJ5L6h14AjriMh7czozDEdA9L9WmAR1fHWW1EvtXDd1&currency=USD"></script>
+  
+  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+</body>
+
+
+
+</html>

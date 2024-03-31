@@ -1,0 +1,54 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block content %}
+
+
+<section class="section-conten padding-y" style="min-height:84vh">
+
+{%if request.GET.command == 'verification'%}
+
+<div class="container mx-auto alert alert-info text-center" role='alert' style="max-width: 1024px; margin-top:100px; margin-bottom:20px">
+  Thanks for registration! We Have sent you a verification email to your email address {{request.GET.email}}
+  <br>
+  Already verified! <a href="{%url 'login_page'%}">Login</a>
+</div>
+{% else %}
+
+
+    <!-- ============================ COMPONENT LOGIN   ================================= -->
+        <div class="card mx-auto" style="max-width: 380px; margin-top:100px; margin-bottom:20px">
+        {% include "partials/alerts.html" %}
+          <div class="card-body">
+          <h4 class="card-title mb-4">Login</h4>
+          <form action="{%url 'login_page'%}" method='POST'>
+                {% csrf_token %}
+              <div class="form-group">
+                 <input type="email" class="form-control" placeholder="Email Address" name='email'>
+              </div> <!-- form-group// -->
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" name='password' >
+              </div> <!-- form-group// -->
+              
+              <div class="form-group">
+                  <a href="{% url 'forgetPassword' %}" class="float-right">Forgot password?</a> 
+               
+              </div> <!-- form-group form-check .// -->
+              <div class="form-group">
+                  <button type="submit" class="btn btn-danger btn-block"> Login  </button>
+              </div> <!-- form-group// -->    
+          </form>
+          </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+    
+         <p class="text-center mt-4">Don't have account? <a href="#">Sign up</a></p>
+         <br><br>
+    <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+    {% endif %}  
+    
+    </section>
+  
+{% endblock content %}

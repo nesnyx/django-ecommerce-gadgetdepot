@@ -1,0 +1,114 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+    Shop
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    {% if 'search' in request.path %}
+        <h2 class="title-page">Search Results</h2>
+    {% else %}
+        <h2 class="title-page">Shop</h2>
+
+    {% endif %}
+    
+    <div class="row">
+        <aside class="col-md-3">
+            <div class="card mb-5">
+                <article class="filter-group">
+                    <header class="card-header">
+                        <a href="#" data-toggle="collapse">
+                            
+                            <h6 class="title">Categories</h6>
+                        </a>
+                    </header>
+                    <div class="filter-content collapse show" id="collapse_1" >
+                        <div class="card-body">
+                            
+                            <ul class="list-menu">
+                                <li><a class="dropdown-item" href="{%url 'store_page'%}">All Products</a></li>
+                                {%for category in links%}
+                                <li><a class="dropdown-item" href="{{category.get_url}}">{{category.category_name}}</a></li>
+                                {%endfor%}
+                            </ul>
+        
+                        </div> <!-- card-body.// -->
+                    </div>
+                </article> <!-- filter-group  .// -->
+
+            </div> <!-- card.// -->
+        
+        </aside> <!-- col.// -->
+        <main class="col-md-9">
+
+            <header class="border-bottom mb-4 pb-3">
+                    <div class="form-inline">
+                        <span class="mr-md-auto">{{count}} Items found </span>
+                        
+                    </div>
+            </header><!-- sect-heading -->
+            
+            <div class="row">
+               
+                {% for data  in product %}
+                <div class="col-md-4">
+                    <figure class="card card-product-grid">
+                        <div class="img-wrap"> 
+                            <img src="{{data.images_product.url}}">
+                            
+                        </div> <!-- img-wrap.// -->
+                        <figcaption class="info-wrap">
+                            <div class="fix-height">
+                                <a href="{{data.get_url}}" class="title">{{data.product_name}}</a>
+                                <div class="price-wrap mt-2">
+                                    <span class="price">$ {{data.price}}</span>
+                                </div> <!-- price-wrap.// -->
+                            </div>
+                            {% if data.qty <= 0  %}
+                            <a href="{{data.get_url}}" class="btn btn-block btn-secondary">Out of Stock!</a>
+                            {% else %}
+                            <a href="{{data.get_url}}" class="btn btn-block btn-danger">View Details</a>	
+                            {% endif %}
+                        </figcaption>
+                    </figure>
+                </div> <!-- col.// -->
+                {%endfor%}
+            
+                
+            
+                
+            </div> <!-- row end.// -->
+            
+            
+            <nav class="mt-4 mb-5" aria-label="Page navigation sample">
+                {% if product.has_other_pages  %}
+                
+    
+                <ul class="pagination">
+                    {%if product.has_previous%}
+                    <li class="page-item"><a class="page-link" href="?page={{product.previous_page_number}}">Previous</a></li>
+                    {%else%}
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    {%endif%}
+                    
+                    {%for i in product.paginator.page_range %}
+                        {%if product.number == i%}
+                            <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                        {%else%}
+                        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                        {%endif%}
+                    {%endfor%}
+                    {%if product.has_next%}
+                        <li class="page-item"><a class="page-link" href="?page={{product.next_page_number}}">Next</a></li>
+                    {%endif%}
+                </ul>
+
+                {% else %}
+                {% endif %}
+            </nav>
+            
+        </main> <!-- col.// -->
+    </div>
+</div>
+{% endblock content %}
